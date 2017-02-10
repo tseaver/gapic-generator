@@ -45,9 +45,7 @@ public class RubyCodeGeneratorTest {
     @Parameters(name = "{0}")
     public static List<Object[]> testedConfigs() {
       return GapicTestBase.createTestedConfigs(
-          MainGapicProviderFactory.RUBY,
-          new String[] {"ruby_gapic.yaml", "library_gapic.yaml"},
-          "library_pkg.yaml");
+          MainGapicProviderFactory.RUBY, new String[] {"ruby_gapic.yaml", "library_gapic.yaml"});
     }
 
     // Tests
@@ -81,8 +79,7 @@ public class RubyCodeGeneratorTest {
     public static List<Object[]> testedConfigs() {
       return GapicTestBase.createTestedConfigs(
           MainGapicProviderFactory.RUBY_DOC,
-          new String[] {"ruby_gapic.yaml", "library_gapic.yaml"},
-          "library_pkg.yaml");
+          new String[] {"ruby_gapic.yaml", "library_gapic.yaml"});
     }
 
     // Tests

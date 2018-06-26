@@ -1,0 +1,14 @@
+version: '3'
+services:
+  showcase:
+    container_name: gapic-showcase
+    image: landrito/gapic-showcase:pre-alpha
+    ports:
+    - "8080:8080"
+
+  test:
+    depends_on:
+    - showcase
+    build: .
+    environment:
+      - SHOWCASE_IP=gapic-showcase

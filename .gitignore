@@ -20,3 +20,6 @@ bazel-*
 *.iml
 *.ipr
 *.iws
+
+# Temp directory
+tmp

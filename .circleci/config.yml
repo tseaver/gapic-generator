@@ -13,7 +13,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Download and install protoc
+          name: Download and install protoc.
           command: |
             curl -o ~/protoc.zip -L \
               https://github.com/google/protobuf/releases/download/v3.6.0/protoc-3.6.0-linux-x86_64.zip
@@ -34,12 +34,12 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: Install dependencies
+          name: Install dependencies.
           command: |
             apk add --no-cache \
               py-pip=9.0.0-r1
             pip install \
               docker-compose==1.12.0
       - run:
-          name: Run Ruby Showcase Tests
+          name: Run Ruby Showcase Tests.
           command: docker-compose -f ./showcase/ruby/docker-compose.yml up --abort-on-container-exit

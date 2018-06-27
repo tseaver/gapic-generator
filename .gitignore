@@ -23,3 +23,6 @@ bazel-*
 
 # Temp directory
 tmp
+
+# Ruby
+**/Gemfile.lock

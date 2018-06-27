@@ -1,0 +1,45 @@
+version: 2
+workflows:
+  version: 2
+  tests:
+    jobs:
+      - ruby-showcase
+      - ruby-showcase-baseline
+jobs:
+  ruby-showcase-baseline:
+    docker:
+      - image: java:8
+    working_directory: /gapic-generator
+    steps:
+      - checkout
+      - run:
+          name: Download and install protoc
+          command: |
+            curl -o ~/protoc.zip -L \
+              https://github.com/google/protobuf/releases/download/v3.6.0/protoc-3.6.0-linux-x86_64.zip
+            unzip ~/protoc.zip -d ~/protoc
+            mv ~/protoc/bin/* /usr/local/bin/
+            mv ~/protoc/include/* /usr/local/include/
+      - run:
+          name: Run generation script.
+          command: ./showcase/ruby/generate.sh
+      - run:
+          name: Check if generation script caused any changes.
+          command: git status -s && git diff-index --quiet HEAD
+  ruby-showcase:
+    docker:
+      - image: docker:17.05.0-ce-git
+    working_directory: /gapic-generator
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Install dependencies
+          command: |
+            apk add --no-cache \
+              py-pip=9.0.0-r1
+            pip install \
+              docker-compose==1.12.0
+      - run:
+          name: Run Ruby Showcase Tests
+          command: docker-compose -f ./showcase/ruby/docker-compose.yml up --abort-on-container-exit

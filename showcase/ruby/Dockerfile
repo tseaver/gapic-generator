@@ -1,17 +1,15 @@
 FROM ruby:2.5
 
-RUN mkdir /app
+# Setup directory
+RUN mkdir /showcase
+WORKDIR /showcase
+COPY . /showcase
 
-WORKDIR /app
-
-COPY . /app
-
-RUN ls
-
+# Init git since bundle install expects to be inside a repository.
 RUN git init
 
+# Install dependencies
 RUN bundle install
 
-EXPOSE 8080
-
+# Default command
 CMD bundle exec rake test

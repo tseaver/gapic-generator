@@ -3,10 +3,20 @@ workflows:
   version: 2
   ruby:
     jobs:
-      - ruby-25-showcase
-      - ruby-24-showcase
-      - ruby-23-showcase
       - ruby-showcase-baseline
+      - ruby-25-showcase:
+          requires:
+            - ruby-showcase-baseline
+      - ruby-25-showcase-integration:
+          requires:
+            - ruby-25-showcase
+      - ruby-24-showcase:
+          requires:
+            - ruby-showcase-baseline
+      - ruby-23-showcase:
+          requires:
+            - ruby-showcase-baseline
+
 jobs:
   ruby-showcase-baseline:
     docker:
@@ -15,20 +25,13 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Download and install protoc.
+          name: Run generation script
+          command: ./testutils/generate_showcase.sh ruby
+      - run:
+          name: Check if generation script caused any changes
           command: |
-            curl -o ~/protoc.zip -L \
-              https://github.com/google/protobuf/releases/download/v3.6.0/protoc-3.6.0-linux-x86_64.zip
-            unzip ~/protoc.zip -d ~/protoc
-            mv ~/protoc/bin/* /usr/local/bin/
-            mv ~/protoc/include/* /usr/local/include/
-      - run:
-          name: Run generation script.
-          command: ./showcase/ruby/generate.sh
-      - run:
-          name: Check if generation script caused any changes.
-          command: git status -s && git diff-index --quiet HEAD
-
+            git diff-index -p HEAD -- showcase
+            git diff-index -p HEAD -- showcase | test -z
   ruby-25-showcase:
     docker:
       - image: ruby:2.5
@@ -42,6 +45,14 @@ jobs:
       - run:
           name: Run Ruby Showcase Tests.
           command: cd showcase/ruby && bundle exec rake test
+
+  ruby-25-showcase-integration:
+    docker:
+      - image: ruby:2.5
+      - image: landrito/gapic-showcase:pre-alpha
+    working_directory: /gapic-generator
+    steps:
+      - checkout
 
   ruby-24-showcase:
     docker:

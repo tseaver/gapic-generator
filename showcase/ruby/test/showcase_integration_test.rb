@@ -8,10 +8,9 @@ require "google/showcase/v1/showcase_services_pb"
 
 describe Google::Cloud::Showcase::V1::ShowcaseClient do
   before(:all) do
-    showcase_ip = ENV['SHOWCASE_IP'] || 'localhost'
     @client = Google::Cloud::Showcase::V1::ShowcaseClient.new(
       credentials: GRPC::Core::Channel.new(
-        "#{showcase_ip}:8080", nil, :this_channel_is_insecure))
+        "localhost:8080", nil, :this_channel_is_insecure))
   end
 
   describe 'echo' do

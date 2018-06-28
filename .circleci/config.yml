@@ -1,9 +1,11 @@
 version: 2
 workflows:
   version: 2
-  tests:
+  ruby:
     jobs:
-      - ruby-showcase
+      - ruby-25-showcase
+      - ruby-24-showcase
+      - ruby-23-showcase
       - ruby-showcase-baseline
 jobs:
   ruby-showcase-baseline:
@@ -26,20 +28,45 @@ jobs:
       - run:
           name: Check if generation script caused any changes.
           command: git status -s && git diff-index --quiet HEAD
-  ruby-showcase:
+
+  ruby-25-showcase:
     docker:
-      - image: docker:17.05.0-ce-git
+      - image: ruby:2.5
+      - image: landrito/gapic-showcase:pre-alpha
     working_directory: /gapic-generator
     steps:
       - checkout
-      - setup_remote_docker
       - run:
           name: Install dependencies.
-          command: |
-            apk add --no-cache \
-              py-pip=9.0.0-r1
-            pip install \
-              docker-compose==1.12.0
+          command: cd showcase/ruby && git init && bundle install
       - run:
           name: Run Ruby Showcase Tests.
-          command: docker-compose -f ./showcase/ruby/docker-compose.yml up --abort-on-container-exit
+          command: cd showcase/ruby && bundle exec rake test
+
+  ruby-24-showcase:
+    docker:
+      - image: ruby:2.4
+      - image: landrito/gapic-showcase:pre-alpha
+    working_directory: /gapic-generator
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies.
+          command: cd showcase/ruby && git init && bundle install
+      - run:
+          name: Run Ruby Showcase Tests.
+          command: cd showcase/ruby && bundle exec rake test
+
+  ruby-23-showcase:
+    docker:
+      - image: ruby:2.3
+      - image: landrito/gapic-showcase:pre-alpha
+    working_directory: /gapic-generator
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies.
+          command: cd showcase/ruby && git init && bundle install
+      - run:
+          name: Run Ruby Showcase Tests.
+          command: cd showcase/ruby && bundle exec rake test

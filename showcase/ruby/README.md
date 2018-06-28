@@ -16,7 +16,7 @@ steps:
 
 ### Installation
 ```
-$ gem install google-cloud-showcase
+$ gem install google-showcase
 ```
 
 ### Next Steps
@@ -27,7 +27,7 @@ $ gem install google-cloud-showcase
 - View this [repository's main README](https://github.com/GoogleCloudPlatform/google-cloud-ruby/blob/master/README.md)
   to see the full list of Cloud APIs that we cover.
 
-[Client Library Documentation]: https://googlecloudplatform.github.io/google-cloud-ruby/#/docs/google-cloud-showcase/latest/google/showcase
+[Client Library Documentation]: https://googlecloudplatform.github.io/google-cloud-ruby/#/docs/google-showcase/latest/google/showcase
 [Product Documentation]: https://cloud.google.com/showcase
 
 ## Enabling Logging

@@ -30,7 +30,7 @@ namespace :test do
   task :coverage do
     require "simplecov"
     SimpleCov.start do
-      command_name "google-cloud-showcase"
+      command_name "google-showcase"
       track_files "lib/**/*.rb"
       add_filter "test/"
     end
@@ -40,7 +40,7 @@ namespace :test do
 end
 
 # Acceptance tests
-desc "Run the google-cloud-showcase acceptance tests."
+desc "Run the google-showcase acceptance tests."
 task :acceptance, :project, :keyfile do |t, args|
 
   Rake::Task["acceptance:run"].invoke
@@ -48,7 +48,7 @@ end
 
 namespace :acceptance do
   task :run do
-    puts "The google-cloud-showcase gem does not have acceptance tests."
+    puts "The google-showcase gem does not have acceptance tests."
   end
 
   desc "Run acceptance tests with coverage."
@@ -64,7 +64,7 @@ require "yard"
 require "yard/rake/yardoc_task"
 YARD::Rake::YardocTask.new
 
-desc "Generates JSON output from google-cloud-showcase .yardoc"
+desc "Generates JSON output from google-showcase .yardoc"
 task :jsondoc => :yard do
   require "rubygems"
   require "gcloud/jsondoc"
@@ -79,7 +79,7 @@ task :jsondoc => :yard do
         modules: [
           {
             title: "Google::Showcase::V1",
-            include: ["google/cloud/showcase/v1"]
+            include: ["google/showcase/v1"]
           },
           {
             title: "Google::Protobuf",
@@ -95,7 +95,7 @@ task :jsondoc => :yard do
   }
 
   generator = Gcloud::Jsondoc::Generator.new registry,
-                                             "google-cloud-showcase",
+                                             "google-showcase",
                                              generate: toc_config
   rm_rf "jsondoc", verbose: true
   generator.write_to "jsondoc"
@@ -104,19 +104,19 @@ end
 
 desc "Run yard-doctest example tests."
 task :doctest do
-  puts "The google-cloud-showcase gem does not have doctest tests."
+  puts "The google-showcase gem does not have doctest tests."
 end
 
 desc "Run the CI build"
 task :ci do
-  header "BUILDING google-cloud-showcase"
-  header "google-cloud-showcase rubocop", "*"
+  header "BUILDING google-showcase"
+  header "google-showcase rubocop", "*"
   sh "bundle exec rake rubocop"
-  header "google-cloud-showcase jsondoc", "*"
+  header "google-showcase jsondoc", "*"
   sh "bundle exec rake jsondoc"
-  header "google-cloud-showcase doctest", "*"
+  header "google-showcase doctest", "*"
   sh "bundle exec rake doctest"
-  header "google-cloud-showcase test", "*"
+  header "google-showcase test", "*"
   sh "bundle exec rake test"
 end
 
@@ -124,7 +124,7 @@ namespace :ci do
   desc "Run the CI build, with acceptance tests."
   task :acceptance do
     Rake::Task["ci"].invoke
-    header "google-cloud-showcase acceptance", "*"
+    header "google-showcase acceptance", "*"
     sh "bundle exec rake acceptance -v"
   end
   task :a do

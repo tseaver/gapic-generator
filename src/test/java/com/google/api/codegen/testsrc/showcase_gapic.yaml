@@ -7,17 +7,17 @@ config_schema_version: 1.0.0
 # The settings of generated code in a specific language.
 language_settings:
   java:
-    package_name: com.google.cloud.showcase.v1
+    package_name: com.google.showcase.v1
   python:
-    package_name: google.cloud.showcase_v1.gapic
+    package_name: google.showcase_v1.gapic
   go:
-    package_name: cloud.google.com/go/showcase/apiv1
+    package_name: google.com/go/showcase/apiv1
   csharp:
     package_name: Google.Showcase.V1
   ruby:
-    package_name: Google::Cloud::Showcase::V1
+    package_name: Google::Showcase::V1
   php:
-    package_name: Google\Cloud\Showcase\V1
+    package_name: Google\Showcase\V1
   nodejs:
     package_name: showcase.v1
 # The configuration for the license header to put on generated files.

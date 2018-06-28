@@ -17,8 +17,8 @@ require "minitest/spec"
 
 require "google/gax"
 
-require "google/cloud/showcase"
-require "google/cloud/showcase/v1/showcase_client"
+require "google/showcase"
+require "google/showcase/v1/showcase_client"
 require "google/showcase/v1/showcase_services_pb"
 require "google/longrunning/operations_pb"
 
@@ -53,7 +53,7 @@ class MockGrpcClientStub
   end
 end
 
-class MockShowcaseCredentials < Google::Cloud::Showcase::V1::Credentials
+class MockShowcaseCredentials < Google::Showcase::V1::Credentials
   def initialize(method_name)
     @method_name = method_name
   end
@@ -66,10 +66,10 @@ class MockShowcaseCredentials < Google::Cloud::Showcase::V1::Credentials
   end
 end
 
-describe Google::Cloud::Showcase::V1::ShowcaseClient do
+describe Google::Showcase::V1::ShowcaseClient do
 
   describe 'echo' do
-    custom_error = CustomTestError.new "Custom test error for Google::Cloud::Showcase::V1::ShowcaseClient#echo."
+    custom_error = CustomTestError.new "Custom test error for Google::Showcase::V1::ShowcaseClient#echo."
 
     it 'invokes echo without error' do
       # Create expected grpc response
@@ -87,8 +87,8 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
       mock_credentials = MockShowcaseCredentials.new("echo")
 
       Google::Showcase::V1::Showcase::Stub.stub(:new, mock_stub) do
-        Google::Cloud::Showcase::V1::Credentials.stub(:default, mock_credentials) do
-          client = Google::Cloud::Showcase.new(version: :v1)
+        Google::Showcase::V1::Credentials.stub(:default, mock_credentials) do
+          client = Google::Showcase.new(version: :v1)
 
           # Call method
           response = client.echo
@@ -117,8 +117,8 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
       mock_credentials = MockShowcaseCredentials.new("echo")
 
       Google::Showcase::V1::Showcase::Stub.stub(:new, mock_stub) do
-        Google::Cloud::Showcase::V1::Credentials.stub(:default, mock_credentials) do
-          client = Google::Cloud::Showcase.new(version: :v1)
+        Google::Showcase::V1::Credentials.stub(:default, mock_credentials) do
+          client = Google::Showcase.new(version: :v1)
 
           # Call method
           err = assert_raises Google::Gax::GaxError do
@@ -133,7 +133,7 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
   end
 
   describe 'expand' do
-    custom_error = CustomTestError.new "Custom test error for Google::Cloud::Showcase::V1::ShowcaseClient#expand."
+    custom_error = CustomTestError.new "Custom test error for Google::Showcase::V1::ShowcaseClient#expand."
 
     it 'invokes expand without error' do
       # Create expected grpc response
@@ -151,8 +151,8 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
       mock_credentials = MockShowcaseCredentials.new("expand")
 
       Google::Showcase::V1::Showcase::Stub.stub(:new, mock_stub) do
-        Google::Cloud::Showcase::V1::Credentials.stub(:default, mock_credentials) do
-          client = Google::Cloud::Showcase.new(version: :v1)
+        Google::Showcase::V1::Credentials.stub(:default, mock_credentials) do
+          client = Google::Showcase.new(version: :v1)
 
           # Call method
           response = client.expand
@@ -175,8 +175,8 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
       mock_credentials = MockShowcaseCredentials.new("expand")
 
       Google::Showcase::V1::Showcase::Stub.stub(:new, mock_stub) do
-        Google::Cloud::Showcase::V1::Credentials.stub(:default, mock_credentials) do
-          client = Google::Cloud::Showcase.new(version: :v1)
+        Google::Showcase::V1::Credentials.stub(:default, mock_credentials) do
+          client = Google::Showcase.new(version: :v1)
 
           # Call method
           err = assert_raises Google::Gax::GaxError do
@@ -191,7 +191,7 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
   end
 
   describe 'collect' do
-    custom_error = CustomTestError.new "Custom test error for Google::Cloud::Showcase::V1::ShowcaseClient#collect."
+    custom_error = CustomTestError.new "Custom test error for Google::Showcase::V1::ShowcaseClient#collect."
 
     it 'invokes collect without error' do
       # Create request parameters
@@ -213,8 +213,8 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
       mock_credentials = MockShowcaseCredentials.new("collect")
 
       Google::Showcase::V1::Showcase::Stub.stub(:new, mock_stub) do
-        Google::Cloud::Showcase::V1::Credentials.stub(:default, mock_credentials) do
-          client = Google::Cloud::Showcase.new(version: :v1)
+        Google::Showcase::V1::Credentials.stub(:default, mock_credentials) do
+          client = Google::Showcase.new(version: :v1)
 
           # Call method
           response = client.collect([request])
@@ -239,8 +239,8 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
       mock_credentials = MockShowcaseCredentials.new("collect")
 
       Google::Showcase::V1::Showcase::Stub.stub(:new, mock_stub) do
-        Google::Cloud::Showcase::V1::Credentials.stub(:default, mock_credentials) do
-          client = Google::Cloud::Showcase.new(version: :v1)
+        Google::Showcase::V1::Credentials.stub(:default, mock_credentials) do
+          client = Google::Showcase.new(version: :v1)
 
           # Call method
           err = assert_raises Google::Gax::GaxError do
@@ -255,7 +255,7 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
   end
 
   describe 'chat' do
-    custom_error = CustomTestError.new "Custom test error for Google::Cloud::Showcase::V1::ShowcaseClient#chat."
+    custom_error = CustomTestError.new "Custom test error for Google::Showcase::V1::ShowcaseClient#chat."
 
     it 'invokes chat without error' do
       # Create request parameters
@@ -277,8 +277,8 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
       mock_credentials = MockShowcaseCredentials.new("chat")
 
       Google::Showcase::V1::Showcase::Stub.stub(:new, mock_stub) do
-        Google::Cloud::Showcase::V1::Credentials.stub(:default, mock_credentials) do
-          client = Google::Cloud::Showcase.new(version: :v1)
+        Google::Showcase::V1::Credentials.stub(:default, mock_credentials) do
+          client = Google::Showcase.new(version: :v1)
 
           # Call method
           response = client.chat([request])
@@ -304,8 +304,8 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
       mock_credentials = MockShowcaseCredentials.new("chat")
 
       Google::Showcase::V1::Showcase::Stub.stub(:new, mock_stub) do
-        Google::Cloud::Showcase::V1::Credentials.stub(:default, mock_credentials) do
-          client = Google::Cloud::Showcase.new(version: :v1)
+        Google::Showcase::V1::Credentials.stub(:default, mock_credentials) do
+          client = Google::Showcase.new(version: :v1)
 
           # Call method
           err = assert_raises Google::Gax::GaxError do
@@ -320,7 +320,7 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
   end
 
   describe 'timeout' do
-    custom_error = CustomTestError.new "Custom test error for Google::Cloud::Showcase::V1::ShowcaseClient#timeout."
+    custom_error = CustomTestError.new "Custom test error for Google::Showcase::V1::ShowcaseClient#timeout."
 
     it 'invokes timeout without error' do
       # Create request parameters
@@ -343,8 +343,8 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
       mock_credentials = MockShowcaseCredentials.new("timeout")
 
       Google::Showcase::V1::Showcase::Stub.stub(:new, mock_stub) do
-        Google::Cloud::Showcase::V1::Credentials.stub(:default, mock_credentials) do
-          client = Google::Cloud::Showcase.new(version: :v1)
+        Google::Showcase::V1::Credentials.stub(:default, mock_credentials) do
+          client = Google::Showcase.new(version: :v1)
 
           # Call method
           response = client.timeout(response_delay)
@@ -378,8 +378,8 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
       mock_credentials = MockShowcaseCredentials.new("timeout")
 
       Google::Showcase::V1::Showcase::Stub.stub(:new, mock_stub) do
-        Google::Cloud::Showcase::V1::Credentials.stub(:default, mock_credentials) do
-          client = Google::Cloud::Showcase.new(version: :v1)
+        Google::Showcase::V1::Credentials.stub(:default, mock_credentials) do
+          client = Google::Showcase.new(version: :v1)
 
           # Call method
           err = assert_raises Google::Gax::GaxError do
@@ -394,7 +394,7 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
   end
 
   describe 'setup_retry' do
-    custom_error = CustomTestError.new "Custom test error for Google::Cloud::Showcase::V1::ShowcaseClient#setup_retry."
+    custom_error = CustomTestError.new "Custom test error for Google::Showcase::V1::ShowcaseClient#setup_retry."
 
     it 'invokes setup_retry without error' do
       # Create request parameters
@@ -420,8 +420,8 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
       mock_credentials = MockShowcaseCredentials.new("setup_retry")
 
       Google::Showcase::V1::Showcase::Stub.stub(:new, mock_stub) do
-        Google::Cloud::Showcase::V1::Credentials.stub(:default, mock_credentials) do
-          client = Google::Cloud::Showcase.new(version: :v1)
+        Google::Showcase::V1::Credentials.stub(:default, mock_credentials) do
+          client = Google::Showcase.new(version: :v1)
 
           # Call method
           response = client.setup_retry(responses)
@@ -458,8 +458,8 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
       mock_credentials = MockShowcaseCredentials.new("setup_retry")
 
       Google::Showcase::V1::Showcase::Stub.stub(:new, mock_stub) do
-        Google::Cloud::Showcase::V1::Credentials.stub(:default, mock_credentials) do
-          client = Google::Cloud::Showcase.new(version: :v1)
+        Google::Showcase::V1::Credentials.stub(:default, mock_credentials) do
+          client = Google::Showcase.new(version: :v1)
 
           # Call method
           err = assert_raises Google::Gax::GaxError do
@@ -474,7 +474,7 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
   end
 
   describe 'retry' do
-    custom_error = CustomTestError.new "Custom test error for Google::Cloud::Showcase::V1::ShowcaseClient#retry."
+    custom_error = CustomTestError.new "Custom test error for Google::Showcase::V1::ShowcaseClient#retry."
 
     it 'invokes retry without error' do
       # Create request parameters
@@ -492,8 +492,8 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
       mock_credentials = MockShowcaseCredentials.new("retry")
 
       Google::Showcase::V1::Showcase::Stub.stub(:new, mock_stub) do
-        Google::Cloud::Showcase::V1::Credentials.stub(:default, mock_credentials) do
-          client = Google::Cloud::Showcase.new(version: :v1)
+        Google::Showcase::V1::Credentials.stub(:default, mock_credentials) do
+          client = Google::Showcase.new(version: :v1)
 
           # Call method
           response = client.retry(id)
@@ -527,8 +527,8 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
       mock_credentials = MockShowcaseCredentials.new("retry")
 
       Google::Showcase::V1::Showcase::Stub.stub(:new, mock_stub) do
-        Google::Cloud::Showcase::V1::Credentials.stub(:default, mock_credentials) do
-          client = Google::Cloud::Showcase.new(version: :v1)
+        Google::Showcase::V1::Credentials.stub(:default, mock_credentials) do
+          client = Google::Showcase.new(version: :v1)
 
           # Call method
           err = assert_raises Google::Gax::GaxError do
@@ -543,7 +543,7 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
   end
 
   describe 'longrunning' do
-    custom_error = CustomTestError.new "Custom test error for Google::Cloud::Showcase::V1::ShowcaseClient#longrunning."
+    custom_error = CustomTestError.new "Custom test error for Google::Showcase::V1::ShowcaseClient#longrunning."
 
     it 'invokes longrunning without error' do
       # Create request parameters
@@ -573,8 +573,8 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
       mock_credentials = MockShowcaseCredentials.new("longrunning")
 
       Google::Showcase::V1::Showcase::Stub.stub(:new, mock_stub) do
-        Google::Cloud::Showcase::V1::Credentials.stub(:default, mock_credentials) do
-          client = Google::Cloud::Showcase.new(version: :v1)
+        Google::Showcase::V1::Credentials.stub(:default, mock_credentials) do
+          client = Google::Showcase.new(version: :v1)
 
           # Call method
           response = client.longrunning(completion_time)
@@ -591,7 +591,7 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
 
       # Create expected grpc response
       operation_error = Google::Rpc::Status.new(
-        message: 'Operation error for Google::Cloud::Showcase::V1::ShowcaseClient#longrunning.'
+        message: 'Operation error for Google::Showcase::V1::ShowcaseClient#longrunning.'
       )
       operation = Google::Longrunning::Operation.new(
         name: 'operations/longrunning_test',
@@ -611,8 +611,8 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
       mock_credentials = MockShowcaseCredentials.new("longrunning")
 
       Google::Showcase::V1::Showcase::Stub.stub(:new, mock_stub) do
-        Google::Cloud::Showcase::V1::Credentials.stub(:default, mock_credentials) do
-          client = Google::Cloud::Showcase.new(version: :v1)
+        Google::Showcase::V1::Credentials.stub(:default, mock_credentials) do
+          client = Google::Showcase.new(version: :v1)
 
           # Call method
           response = client.longrunning(completion_time)
@@ -640,8 +640,8 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
       mock_credentials = MockShowcaseCredentials.new("longrunning")
 
       Google::Showcase::V1::Showcase::Stub.stub(:new, mock_stub) do
-        Google::Cloud::Showcase::V1::Credentials.stub(:default, mock_credentials) do
-          client = Google::Cloud::Showcase.new(version: :v1)
+        Google::Showcase::V1::Credentials.stub(:default, mock_credentials) do
+          client = Google::Showcase.new(version: :v1)
 
           # Call method
           err = assert_raises Google::Gax::GaxError do
@@ -656,7 +656,7 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
   end
 
   describe 'pagination' do
-    custom_error = CustomTestError.new "Custom test error for Google::Cloud::Showcase::V1::ShowcaseClient#pagination."
+    custom_error = CustomTestError.new "Custom test error for Google::Showcase::V1::ShowcaseClient#pagination."
 
     it 'invokes pagination without error' do
       # Create request parameters
@@ -681,8 +681,8 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
       mock_credentials = MockShowcaseCredentials.new("pagination")
 
       Google::Showcase::V1::Showcase::Stub.stub(:new, mock_stub) do
-        Google::Cloud::Showcase::V1::Credentials.stub(:default, mock_credentials) do
-          client = Google::Cloud::Showcase.new(version: :v1)
+        Google::Showcase::V1::Credentials.stub(:default, mock_credentials) do
+          client = Google::Showcase.new(version: :v1)
 
           # Call method
           response = client.pagination(max_response)
@@ -712,8 +712,8 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
       mock_credentials = MockShowcaseCredentials.new("pagination")
 
       Google::Showcase::V1::Showcase::Stub.stub(:new, mock_stub) do
-        Google::Cloud::Showcase::V1::Credentials.stub(:default, mock_credentials) do
-          client = Google::Cloud::Showcase.new(version: :v1)
+        Google::Showcase::V1::Credentials.stub(:default, mock_credentials) do
+          client = Google::Showcase.new(version: :v1)
 
           # Call method
           err = assert_raises Google::Gax::GaxError do
@@ -728,7 +728,7 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
   end
 
   describe 'parameter_flattening' do
-    custom_error = CustomTestError.new "Custom test error for Google::Cloud::Showcase::V1::ShowcaseClient#parameter_flattening."
+    custom_error = CustomTestError.new "Custom test error for Google::Showcase::V1::ShowcaseClient#parameter_flattening."
 
     it 'invokes parameter_flattening without error' do
       # Create expected grpc response
@@ -746,8 +746,8 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
       mock_credentials = MockShowcaseCredentials.new("parameter_flattening")
 
       Google::Showcase::V1::Showcase::Stub.stub(:new, mock_stub) do
-        Google::Cloud::Showcase::V1::Credentials.stub(:default, mock_credentials) do
-          client = Google::Cloud::Showcase.new(version: :v1)
+        Google::Showcase::V1::Credentials.stub(:default, mock_credentials) do
+          client = Google::Showcase.new(version: :v1)
 
           # Call method
           response = client.parameter_flattening
@@ -776,8 +776,8 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
       mock_credentials = MockShowcaseCredentials.new("parameter_flattening")
 
       Google::Showcase::V1::Showcase::Stub.stub(:new, mock_stub) do
-        Google::Cloud::Showcase::V1::Credentials.stub(:default, mock_credentials) do
-          client = Google::Cloud::Showcase.new(version: :v1)
+        Google::Showcase::V1::Credentials.stub(:default, mock_credentials) do
+          client = Google::Showcase.new(version: :v1)
 
           # Call method
           err = assert_raises Google::Gax::GaxError do
@@ -792,12 +792,12 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
   end
 
   describe 'resource_name' do
-    custom_error = CustomTestError.new "Custom test error for Google::Cloud::Showcase::V1::ShowcaseClient#resource_name."
+    custom_error = CustomTestError.new "Custom test error for Google::Showcase::V1::ShowcaseClient#resource_name."
 
     it 'invokes resource_name without error' do
       # Create request parameters
-      formatted_single_template = Google::Cloud::Showcase::V1::ShowcaseClient.single_path("[ID]")
-      formatted_multiple_templates = Google::Cloud::Showcase::V1::ShowcaseClient.first_path("[ID]")
+      formatted_single_template = Google::Showcase::V1::ShowcaseClient.single_path("[ID]")
+      formatted_multiple_templates = Google::Showcase::V1::ShowcaseClient.first_path("[ID]")
 
       # Create expected grpc response
       single_template_2 = "singleTemplate21956345348"
@@ -818,8 +818,8 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
       mock_credentials = MockShowcaseCredentials.new("resource_name")
 
       Google::Showcase::V1::Showcase::Stub.stub(:new, mock_stub) do
-        Google::Cloud::Showcase::V1::Credentials.stub(:default, mock_credentials) do
-          client = Google::Cloud::Showcase.new(version: :v1)
+        Google::Showcase::V1::Credentials.stub(:default, mock_credentials) do
+          client = Google::Showcase.new(version: :v1)
 
           # Call method
           response = client.resource_name(formatted_single_template, formatted_multiple_templates)
@@ -839,8 +839,8 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
 
     it 'invokes resource_name with error' do
       # Create request parameters
-      formatted_single_template = Google::Cloud::Showcase::V1::ShowcaseClient.single_path("[ID]")
-      formatted_multiple_templates = Google::Cloud::Showcase::V1::ShowcaseClient.first_path("[ID]")
+      formatted_single_template = Google::Showcase::V1::ShowcaseClient.single_path("[ID]")
+      formatted_multiple_templates = Google::Showcase::V1::ShowcaseClient.first_path("[ID]")
 
       # Mock Grpc layer
       mock_method = proc do |request|
@@ -855,8 +855,8 @@ describe Google::Cloud::Showcase::V1::ShowcaseClient do
       mock_credentials = MockShowcaseCredentials.new("resource_name")
 
       Google::Showcase::V1::Showcase::Stub.stub(:new, mock_stub) do
-        Google::Cloud::Showcase::V1::Credentials.stub(:default, mock_credentials) do
-          client = Google::Cloud::Showcase.new(version: :v1)
+        Google::Showcase::V1::Credentials.stub(:default, mock_credentials) do
+          client = Google::Showcase.new(version: :v1)
 
           # Call method
           err = assert_raises Google::Gax::GaxError do

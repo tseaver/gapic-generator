@@ -20,10 +20,10 @@ module Google
     # | Class | Description |
     # | ----- | ----------- |
     # | [ShowcaseClient][] | A service to showcase Generated API Client features and common API patterns used by Google. |
-    # | [Data Types][] | Data types for Google::Cloud::Showcase::V1 |
+    # | [Data Types][] | Data types for Google::Showcase::V1 |
     #
-    # [ShowcaseClient]: https://googlecloudplatform.github.io/google-cloud-ruby/#/docs/google-cloud-showcase/latest/google/showcase/v1/showcaseclient
-    # [Data Types]: https://googlecloudplatform.github.io/google-cloud-ruby/#/docs/google-cloud-showcase/latest/google/showcase/v1/datatypes
+    # [ShowcaseClient]: https://googlecloudplatform.github.io/google-cloud-ruby/#/docs/google-showcase/latest/google/showcase/v1/showcaseclient
+    # [Data Types]: https://googlecloudplatform.github.io/google-cloud-ruby/#/docs/google-showcase/latest/google/showcase/v1/datatypes
     #
     module V1
       # The request message used for the Echo, Collect and Chat methods. If content

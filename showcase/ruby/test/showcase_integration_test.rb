@@ -3,12 +3,12 @@ require "minitest/spec"
 
 require "grpc"
 
-require "google/cloud/showcase/v1/showcase_client"
+require "google/showcase/v1/showcase_client"
 require "google/showcase/v1/showcase_services_pb"
 
-describe Google::Cloud::Showcase::V1::ShowcaseClient do
+describe Google::Showcase::V1::ShowcaseClient do
   before(:all) do
-    @client = Google::Cloud::Showcase::V1::ShowcaseClient.new(
+    @client = Google::Showcase::V1::ShowcaseClient.new(
       credentials: GRPC::Core::Channel.new(
         "localhost:8080", nil, :this_channel_is_insecure))
   end

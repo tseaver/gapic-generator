@@ -4,12 +4,9 @@ workflows:
   ruby:
     jobs:
       - ruby-showcase-baseline
-      - ruby-25-showcase-unit-tests:
+      - ruby-25-showcase-tests:
           requires:
             - ruby-showcase-baseline
-      - ruby-25-showcase-integration-tests:
-          requires:
-            - ruby-25-showcase-unit-tests
 
 jobs:
   ruby-showcase-baseline:
@@ -22,25 +19,13 @@ jobs:
           name: Run generation
           command: ./gradlew updateRubyShowcase
       - run:
+          # TODO Add error message indicating to run ./gradlew updateRubyShowcase
           name: Check if generation caused any changes
           command: |
             git diff-index -p HEAD -- showcase/ruby
             git diff-index -p HEAD -- showcase/ruby | test -z
 
-  ruby-25-showcase-unit-tests:
-    docker:
-      - image: ruby:2.5
-    working_directory: /gapic-generator
-    steps:
-      - checkout
-      - run:
-          name: Install dependencies
-          command: cd showcase/ruby && git init && bundle install
-      - run:
-          name: Run Generated Tests
-          command: cd showcase/ruby && bundle exec rake test
-
-  ruby-25-showcase-integration-tests:
+  ruby-25-showcase-tests:
     docker:
       - image: ruby:2.5
       - image: landrito/gapic-showcase:pre-alpha
@@ -49,8 +34,11 @@ jobs:
       - checkout
       - run:
           name: Install dependencies
-          command: cd showcase/ruby-integration-tests && bundle install
+          command: cd showcase/ruby && bundle install
+      - run:
+          name: Run Generated Tests
+          command: cd showcase/ruby && bundle exec rake test
       - run:
           name: Run Integration Tests
-          command: cd showcase/ruby-integration-tests && bundle exec rake test
+          command: cd showcase/ruby && bundle exec ruby integration/showcase_integration_test.rb
 

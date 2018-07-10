@@ -1,0 +1,7 @@
+
+source "https://rubygems.org"
+
+gemspec
+
+gem "google-showcase", :path => "../ruby"
+gem "rake", "~> 11.0"

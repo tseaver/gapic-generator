@@ -148,6 +148,23 @@ task fatJar(type: com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar) {
   }
 }
 
+def createUpdateShowcaseTask(language) {
+  task "update${language}Showcase"(type: JavaExec) {
+    def testSrc = "$projectDir/src/test/java/com/google/api/codegen/testsrc"
+    dependsOn jar
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'com.google.api.codegen.GeneratorMain'
+    args 'LEGACY_GAPIC_AND_PACKAGE',
+         "--descriptor_set=$testSrc/showcase.desc",
+         "--package_yaml2=$testSrc/showcase_pkg2.yaml",
+         "--output=$projectDir/showcase/${language.toLowerCase()}",
+         "--language=$language",
+         "--service_yaml=$testSrc/showcase.yaml",
+         "--gapic_yaml=$testSrc/showcase_gapic.yaml"
+  }
+}
+createUpdateShowcaseTask("Ruby")
+
 jacocoTestReport {
   reports {
     xml.enabled true

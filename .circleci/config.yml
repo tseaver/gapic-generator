@@ -4,18 +4,12 @@ workflows:
   ruby:
     jobs:
       - ruby-showcase-baseline
-      - ruby-25-showcase:
+      - ruby-25-showcase-unit-tests:
           requires:
             - ruby-showcase-baseline
-      - ruby-25-showcase-integration:
+      - ruby-25-showcase-integration-tests:
           requires:
-            - ruby-25-showcase
-      - ruby-24-showcase:
-          requires:
-            - ruby-showcase-baseline
-      - ruby-23-showcase:
-          requires:
-            - ruby-showcase-baseline
+            - ruby-25-showcase-unit-tests
 
 jobs:
   ruby-showcase-baseline:
@@ -25,14 +19,28 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Run generation script
-          command: ./testutils/generate_showcase.sh ruby
+          name: Run generation
+          command: ./gradlew updateRubyShowcase
       - run:
-          name: Check if generation script caused any changes
+          name: Check if generation caused any changes
           command: |
-            git diff-index -p HEAD -- showcase
-            git diff-index -p HEAD -- showcase | test -z
-  ruby-25-showcase:
+            git diff-index -p HEAD -- showcase/ruby
+            git diff-index -p HEAD -- showcase/ruby | test -z
+
+  ruby-25-showcase-unit-tests:
+    docker:
+      - image: ruby:2.5
+    working_directory: /gapic-generator
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: cd showcase/ruby && git init && bundle install
+      - run:
+          name: Run Generated Tests
+          command: cd showcase/ruby && bundle exec rake test
+
+  ruby-25-showcase-integration-tests:
     docker:
       - image: ruby:2.5
       - image: landrito/gapic-showcase:pre-alpha
@@ -40,44 +48,9 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install dependencies.
-          command: cd showcase/ruby && git init && bundle install
+          name: Install dependencies
+          command: cd showcase/ruby-integration-tests && bundle install
       - run:
-          name: Run Ruby Showcase Tests.
-          command: cd showcase/ruby && bundle exec rake test
+          name: Run Integration Tests
+          command: cd showcase/ruby-integration-tests && bundle exec rake test
 
-  ruby-25-showcase-integration:
-    docker:
-      - image: ruby:2.5
-      - image: landrito/gapic-showcase:pre-alpha
-    working_directory: /gapic-generator
-    steps:
-      - checkout
-
-  ruby-24-showcase:
-    docker:
-      - image: ruby:2.4
-      - image: landrito/gapic-showcase:pre-alpha
-    working_directory: /gapic-generator
-    steps:
-      - checkout
-      - run:
-          name: Install dependencies.
-          command: cd showcase/ruby && git init && bundle install
-      - run:
-          name: Run Ruby Showcase Tests.
-          command: cd showcase/ruby && bundle exec rake test
-
-  ruby-23-showcase:
-    docker:
-      - image: ruby:2.3
-      - image: landrito/gapic-showcase:pre-alpha
-    working_directory: /gapic-generator
-    steps:
-      - checkout
-      - run:
-          name: Install dependencies.
-          command: cd showcase/ruby && git init && bundle install
-      - run:
-          name: Run Ruby Showcase Tests.
-          command: cd showcase/ruby && bundle exec rake test
